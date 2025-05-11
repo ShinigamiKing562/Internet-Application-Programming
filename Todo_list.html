@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TODO List</title>
+</head>
+<body>
+  <script>
+    // Creating form elements using create element
+    const form = document.createElement('form');
+    const newTask = document.createElement('input');
+    const submit = document.createElement('button');
+    const taskList = document.createElement('ul');
+
+    // Set attr
+    newTask.setAttribute('type', 'text');
+    newTask.setAttribute('placeholder', 'Enter a new task');
+    newTask.setAttribute('id', 'newTask');
+
+    submit.setAttribute('type', 'submit');
+    submit.setAttribute('id', 'submit');
+    submit.textContent = 'Add Task';
+    submit.disabled = true;
+
+    form.setAttribute('id', 'taskForm');
+    taskList.setAttribute('id', 'taskList');
+
+    // Append input and button to form
+    form.append(newTask, submit);
+
+    // Append form and list to body
+    document.body.append(form, taskList);
+
+    // Toggle submit based on input
+    newTask.addEventListener('input', function () {
+      submit.disabled = newTask.value.trim() === '';
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form reload
+
+      const taskText = newTask.value.trim();
+      if (taskText !== '') {
+        const listItem = document.createElement('li');
+        listItem.textContent = taskText;
+        taskList.append(listItem);
+
+        newTask.value = '';
+        submit.disabled = true;
+      }
+
+      return false; 
+    });
+  </script>
+</body>
+</html>
