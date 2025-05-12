@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Search for Recipes</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="custom-search-bar">
+    <span class="icon-left">🔍</span>
+    <input
+      type="text"
+      id="search-field"
+      name="query"
+      placeholder="Enter ingredients or recipe name"
+    />
+
+    <!-- Star button as submit -->
+    <button
+      type="submit"
+      class="icon-right"
+      style="background: none; border: none; cursor: pointer"
+    >
+      ✨
+    </button>
+
+    <div class="icon-center">−</div>
+  </div>
+</form>
+{% endblock %}
